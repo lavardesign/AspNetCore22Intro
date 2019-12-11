@@ -1,0 +1,14 @@
+﻿@model IEnumerable<VideoViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@foreach (var video in Model)
+{
+    <partial name="_VideoPartial" model="video" />
+}
+
+<div>
+    <a asp-action="Create">Create</a>
+</div>
