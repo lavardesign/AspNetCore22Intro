@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspNetCore22Intro.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IVideoData _videos;
@@ -19,6 +21,7 @@ namespace AspNetCore22Intro.Controllers
             _videos = videos;
         }
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = _videos.GetAll().Select(video =>

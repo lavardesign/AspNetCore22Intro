@@ -1,4 +1,5 @@
 ﻿using AspNetCore22Intro.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCore22Intro.Data
 {
-    public class VideoDbContext : DbContext
+    public class VideoDbContext : IdentityDbContext<VideoUser>
     {
         public DbSet<Video> Videos { get; set; }
 

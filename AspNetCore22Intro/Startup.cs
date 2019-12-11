@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using AspNetCore22Intro.Services;
 using AspNetCore22Intro.Data;
+using AspNetCore22Intro.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCore22Intro
@@ -24,8 +26,9 @@ namespace AspNetCore22Intro
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<VideoUser, IdentityRole>()
+                .AddEntityFrameworkStores<VideoDbContext>();
             var conn = Configuration.GetConnectionString("DefaultConnection");
-
             services.AddDbContext<VideoDbContext>(options =>
                 options.UseSqlServer(conn));
             services.AddSingleton(provider => Configuration);
@@ -42,6 +45,8 @@ namespace AspNetCore22Intro
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
