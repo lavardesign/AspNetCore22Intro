@@ -4,11 +4,13 @@
     ViewBag.Title = "Home";
 }
 
-@foreach (var video in Model)
-{
-    <partial name="_VideoPartial" model="video" />
-}
+<div class="card-deck mt-3">
+    @foreach (var video in Model)
+    {
+        <partial name="_VideoPartial" model="video" />
+    }
+</div>
 
 <div>
-    <a asp-action="Create">Create</a>
+    <a asp-action="Create" class="btn btn-success">Create</a>
 </div>
